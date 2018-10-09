@@ -1,3 +1,3 @@
 # WordStream
 
-https://vixlab305.github.io/WordStream/
+https://wordstreamviz.github.io/
