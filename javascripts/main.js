@@ -53,7 +53,7 @@ function loadData(){
     }
     else if (fileName.indexOf("CS_TTU")>=0){
         categories = ["Data Science", "High Performance Computing", "Software Engineering","Artificial Intelligence", "Security"];
-        loadCS(drawCS, 500);
+        loadCS(drawCS, 100);
     }
     else if (fileName.indexOf("Cards_PC")>=0){
         categories = ["adds_modification", "removes_modification", "increases","decreases", "binds", "translocation"];
@@ -121,14 +121,14 @@ function draw(data, pop){
     let font = "Arial";
     let interpolation = "cardinal";
     let bias = 200;
-    let offsetLegend = 50;
+    let offsetLegend = 100;
     let axisPadding = 10;
     let margins = {left: 20, top: 20, right: 10, bottom: 30};
     let ws = d3.layout.wordStream()
         .size([width, height])
         .interpolate(interpolation)
         .fontScale(d3.scale.linear())
-        .minFontSize(9)
+        .minFontSize(10)
         .maxFontSize(38)
         .data(data)
         .font(font);
@@ -394,22 +394,22 @@ function draw(data, pop){
 
     });
 
-    //Build the legends
-    let legendGroup = svg.append('g').attr('transform', 'translate(' + margins.left + ',' + (height+margins.top+offsetLegend) + ')');
-    let legendNodes = legendGroup.selectAll('g').data(boxes.topics).enter().append('g')
-        .attr('transform', function(d, i){return 'translate(' + 10 + ',' + (i*legendFontSize) + ')';});
-    legendNodes.append('circle').attr({
-        r: 5,
-        fill: function(d, i){return color(i);},
-        'fill-opacity': 1,
-        stroke: 'black',
-        'stroke-width': .5,
-    });
-    legendNodes.append('text').text(function(d){return d;}).attr({
-        'font-size': legendFontSize,
-        'alignment-baseline': 'middle',
-        dx: 8
-    });
+    // //Build the legends
+    // let legendGroup = svg.append('g').attr('transform', 'translate(' + margins.left + ',' + (height+margins.top+offsetLegend) + ')');
+    // let legendNodes = legendGroup.selectAll('g').data(boxes.topics).enter().append('g')
+    //     .attr('transform', function(d, i){return 'translate(' + 10 + ',' + (i*legendFontSize) + ')';});
+    // legendNodes.append('circle').attr({
+    //     r: 5,
+    //     fill: function(d, i){return color(i);},
+    //     'fill-opacity': 1,
+    //     stroke: 'black',
+    //     'stroke-width': .5,
+    // });
+    // legendNodes.append('text').text(function(d){return d;}).attr({
+    //     'font-size': legendFontSize,
+    //     'alignment-baseline': 'middle',
+    //     dx: 8
+    // });
 
     //  =========== COMPACTNESS ==============
 
