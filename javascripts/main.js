@@ -8,9 +8,9 @@ let svg = d3.select("body").append('svg').attr({
 // let fileList = ["WikiNews","Huffington","CrooksAndLiars","EmptyWheel","Esquire","FactCheck"
 //                 ,"VIS_papers","IMDB","PopCha","Cards_PC","Cards_Fries"]
 
-let fileList = ["WikiNews", "Huffington", "CrooksAndLiars", "EmptyWheel","Esquire","FactCheck", "VIS_papers", "IMDB","PopCha","Cards_PC","Cards_Fries"]
+let fileList = ["WikiNews", "Huffington", "CrooksAndLiars", "EmptyWheel","Esquire","FactCheck", "VIS_papers", "IMDB","PopCha","Cards_PC","Cards_Fries","CS_TTU"]
 
-let initialDataset = "VIS_papers";
+let initialDataset = "CS_TTU";
 let categories = ["person","location","organization","miscellaneous"];
 
 var fileName;
@@ -50,6 +50,10 @@ function loadData(){
     if (fileName.indexOf("Cards_Fries")>=0){
         categories = ["increases_activity", "decreases_activity"];
         loadAuthorData(draw, 100);
+    }
+    else if (fileName.indexOf("CS_TTU")>=0){
+        categories = ["Data Science", "High Performance Computing", "Software Engineering","Artificial Intelligence", "Security"];
+        loadCS(drawCS, 50);
     }
     else if (fileName.indexOf("Cards_PC")>=0){
         categories = ["adds_modification", "removes_modification", "increases","decreases", "binds", "translocation"];
@@ -97,17 +101,22 @@ function drawpop(data){
     draw(data, 1);
 };
 
+function drawCS(data){
+    draw(data, 2)
+}
 function draw(data, pop){
     //Layout data
     let dataWidth;
-    if (pop) {dataWidth = data.length*20}
+    if (pop === 1) {dataWidth = data.length*20;}
+    else if (pop === 2) {dataWidth = data.length*90;}
     else {dataWidth = data.length*100;}
 
 // function draw(data){
 //     //Layout data
 //     let dataWidth = data.length*100;
 
-    let width = (dataWidth > minWidth) ? dataWidth:minWidth;
+    // let width = (dataWidth > minWidth) ? dataWidth:minWidth;
+    let width = dataWidth ;
     document.getElementById("mainsvg").setAttribute("width",width);
     let font = "Arial";
     let interpolation = "cardinal";
