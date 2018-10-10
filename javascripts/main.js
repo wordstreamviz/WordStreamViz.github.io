@@ -121,7 +121,7 @@ function draw(data, pop){
     let font = "Arial";
     let interpolation = "cardinal";
     let bias = 200;
-    let offsetLegend = 100;
+    let offsetLegend = 70;
     let axisPadding = 10;
     let margins = {left: 20, top: 20, right: 10, bottom: 30};
     let ws = d3.layout.wordStream()
@@ -137,7 +137,7 @@ function draw(data, pop){
         maxFreq = ws.maxFreq();
 
     //Display data
-    let legendFontSize = 12;
+    let legendFontSize = 20;
     let legendHeight = boxes.topics.length*legendFontSize;
     //set svg data.
     svg.attr({
@@ -245,9 +245,6 @@ function draw(data, pop){
     for(i=0; i< allWords.length; i++){
         terms.concat(allWords[i].text);
     }
-
-    // Unique term de to mau cho cac chu  cung noi dung co cung mau
-
 
     let opacity = d3.scale.log()
         .domain([minFreq, maxFreq])
@@ -394,22 +391,23 @@ function draw(data, pop){
 
     });
 
-    // //Build the legends
-    // let legendGroup = svg.append('g').attr('transform', 'translate(' + margins.left + ',' + (height+margins.top+offsetLegend) + ')');
-    // let legendNodes = legendGroup.selectAll('g').data(boxes.topics).enter().append('g')
-    //     .attr('transform', function(d, i){return 'translate(' + 10 + ',' + (i*legendFontSize) + ')';});
-    // legendNodes.append('circle').attr({
-    //     r: 5,
-    //     fill: function(d, i){return color(i);},
-    //     'fill-opacity': 1,
-    //     stroke: 'black',
-    //     'stroke-width': .5,
-    // });
-    // legendNodes.append('text').text(function(d){return d;}).attr({
-    //     'font-size': legendFontSize,
-    //     'alignment-baseline': 'middle',
-    //     dx: 8
-    // });
+    //Build the legends
+    let legendGroup = svg.append('g').attr('transform', 'translate(' + margins.left + ',' + (height+margins.top+offsetLegend) + ')');
+    let legendNodes = legendGroup.selectAll('g').data(boxes.topics).enter().append('g')
+        .attr('transform', function(d, i){return 'translate(' + 30 + ',' + (i*legendFontSize+5) + ')';});
+    legendNodes.append('circle').attr({
+        r: 6,
+        fill: function(d, i){return color(i);},
+        'fill-opacity': 1,
+        stroke: 'black',
+        'stroke-width': .5,
+    });
+    legendNodes.append('text').text(function(d){return d;}).attr({
+        'font-size': legendFontSize,
+        'alignment-baseline': 'middle',
+        dx: 15
+
+    });
 
     //  =========== COMPACTNESS ==============
 
@@ -575,7 +573,7 @@ function styleAxis(axisNodes){
     });
     axisNodes.selectAll('.tick text').attr({
         'font-family': 'serif',
-        'font-size': 10
+        'font-size': 14
     });
 }
 function styleGridlineNodes(gridlineNodes){
