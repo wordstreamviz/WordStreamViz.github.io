@@ -1,4 +1,4 @@
-let minWidth = screen.availWidth, height = 800;
+let minWidth = screen.availWidth, height = 1000;
 let svg = d3.select("body").append('svg').attr({
     width: minWidth,
     height: height,
@@ -53,7 +53,7 @@ function loadData(){
     }
     else if (fileName.indexOf("CS_TTU")>=0){
         categories = ["Data Science", "High Performance Computing", "Software Engineering","Artificial Intelligence", "Security"];
-        loadCS(drawCS, 50);
+        loadCS(drawCS, 500);
     }
     else if (fileName.indexOf("Cards_PC")>=0){
         categories = ["adds_modification", "removes_modification", "increases","decreases", "binds", "translocation"];
@@ -108,7 +108,7 @@ function draw(data, pop){
     //Layout data
     let dataWidth;
     if (pop === 1) {dataWidth = data.length*20;}
-    else if (pop === 2) {dataWidth = data.length*90;}
+    else if (pop === 2) {dataWidth = data.length*160;}
     else {dataWidth = data.length*100;}
 
 // function draw(data){
@@ -128,8 +128,8 @@ function draw(data, pop){
         .size([width, height])
         .interpolate(interpolation)
         .fontScale(d3.scale.linear())
-        .minFontSize(8)
-        .maxFontSize(40)
+        .minFontSize(9)
+        .maxFontSize(38)
         .data(data)
         .font(font);
     let boxes = ws.boxes(),
@@ -463,7 +463,7 @@ function draw(data, pop){
         // + "  |  Total Area: " + totalArea.toFixed(0) + "  |  Area of all words: " + allWordsArea)
         .append("svg:tspan").attr('x', 0).attr('dy', 20).text("Compactness: " + compactness.toFixed(2))
         .append("svg:tspan").attr('x', 0).attr('dy', 20).text("Area of all words = " + ratio.toFixed(2) + " × Total Area" )
-        .append("svg:tspan").attr('x', 0).attr('dy', 20).text("Weighted display Rate: " + weightedRate.toFixed(2))
+        .append("svg:tspan").attr('x', 0).attr('dy', 20).text("Weighted Display Rate: " + weightedRate.toFixed(2))
         .append("svg:tspan").attr('x', 0).attr('dy', 20).text("Average Normalized Frequency: " + averageNormFreq.toFixed(3) );
 
     console.log(compactness.toFixed(2), ratio.toFixed(2), weightedRate.toFixed(2), averageNormFreq.toFixed(3));
