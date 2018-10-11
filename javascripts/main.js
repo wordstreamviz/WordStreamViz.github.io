@@ -121,7 +121,7 @@ function draw(data, pop){
     let font = "Arial";
     let interpolation = "cardinal";
     let bias = 200;
-    let offsetLegend = 70;
+    let offsetLegend = 0;
     let axisPadding = 10;
     let margins = {left: 20, top: 20, right: 10, bottom: 30};
     let ws = d3.layout.wordStream()
