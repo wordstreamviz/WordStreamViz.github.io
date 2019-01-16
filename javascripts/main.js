@@ -1,4 +1,4 @@
-let minWidth = screen.availWidth, height = 1000;
+let minWidth = 1500, height = 1000;
 let svg = d3.select("body").append('svg').attr({
     width: minWidth,
     height: height,
@@ -47,50 +47,51 @@ function loadData(){
     spinner = new Spinner(opts).spin(target);
     // END: loader spinner settings ****************************
     fileName = "data/"+fileName+".tsv"; // Add data folder path
-    if (fileName.indexOf("Cards_Fries")>=0){
-        categories = ["increases_activity", "decreases_activity"];
-        loadAuthorData(draw, 100);
-    }
-    else if (fileName.indexOf("CS_TTU")>=0){
-        categories = ["Data Science", "High Performance Computing", "Software Engineering","Artificial Intelligence", "Security"];
-        loadCS(drawCS, 100);
-    }
-    else if (fileName.indexOf("Cards_PC")>=0){
-        categories = ["adds_modification", "removes_modification", "increases","decreases", "binds", "translocation"];
-        loadAuthorData(draw, 100);
-    }
-    else if (fileName.indexOf("PopCha")>=0){
-        categories = ["Comedy","Drama","Action", "Fantasy", "Horror"];
-        loadAuthorData(drawpop, 1000);
-    }
-    else if (fileName.indexOf("IMDB")>=0){
-        categories = ["Comedy","Drama","Action", "Family"];
-        loadAuthorData(draw, 20);
-    }
-    else if (fileName.indexOf("VIS")>=0){
-        categories = categories = ["Vis","VAST","InfoVis","SciVis"];
-        loadAuthorData(draw, 20);
-    }
-    else if (fileName.indexOf("Huffington")>=0){
-        categories = categories = ["person","location","organization","miscellaneous"];
-        loadBlogPostData(draw, 45);
-    }
-    else if (fileName.indexOf("CrooksAndLiars")>=0){
-        categories = categories = ["person","location","organization","miscellaneous"];
-        loadBlogPostData(draw, 40);
-    }
-    else if (fileName.indexOf("EmptyWheel")>=0) {
-        categories = categories = ["person", "location", "organization", "miscellaneous"];
-        loadBlogPostData(draw, 40);
-    }
-    else if (fileName.indexOf("Esquire")>=0) {
-        categories = categories = ["person", "location", "organization", "miscellaneous"];
-        loadBlogPostData(draw, 40);
-    }
-    else{
-        categories = ["person","location","organization","miscellaneous"];
-        loadBlogPostData(draw, 30);
-    }
+    loadAcledData(draw);
+    // if (fileName.indexOf("Cards_Fries")>=0){
+    //     categories = ["increases_activity", "decreases_activity"];
+    //     loadAuthorData(draw, 100);
+    // }
+    // else if (fileName.indexOf("CS_TTU")>=0){
+    //     categories = ["Data Science", "High Performance Computing", "Software Engineering","Artificial Intelligence", "Security"];
+    //     loadCS(drawCS, 100);
+    // }
+    // else if (fileName.indexOf("Cards_PC")>=0){
+    //     categories = ["adds_modification", "removes_modification", "increases","decreases", "binds", "translocation"];
+    //     loadAuthorData(draw, 100);
+    // }
+    // else if (fileName.indexOf("PopCha")>=0){
+    //     categories = ["Comedy","Drama","Action", "Fantasy", "Horror"];
+    //     loadAuthorData(drawpop, 1000);
+    // }
+    // else if (fileName.indexOf("IMDB")>=0){
+    //     categories = ["Comedy","Drama","Action", "Family"];
+    //     loadAuthorData(draw, 20);
+    // }
+    // else if (fileName.indexOf("VIS")>=0){
+    //     categories = categories = ["Vis","VAST","InfoVis","SciVis"];
+    //     loadAuthorData(draw, 20);
+    // }
+    // else if (fileName.indexOf("Huffington")>=0){
+    //     categories = categories = ["person","location","organization","miscellaneous"];
+    //     loadBlogPostData(draw, 45);
+    // }
+    // else if (fileName.indexOf("CrooksAndLiars")>=0){
+    //     categories = categories = ["person","location","organization","miscellaneous"];
+    //     loadBlogPostData(draw, 40);
+    // }
+    // else if (fileName.indexOf("EmptyWheel")>=0) {
+    //     categories = categories = ["person", "location", "organization", "miscellaneous"];
+    //     loadBlogPostData(draw, 40);
+    // }
+    // else if (fileName.indexOf("Esquire")>=0) {
+    //     categories = categories = ["person", "location", "organization", "miscellaneous"];
+    //     loadBlogPostData(draw, 40);
+    // }
+    // else{
+    //     categories = ["person","location","organization","miscellaneous"];
+    //     loadBlogPostData(draw, 30);
+    // }
 }
 function loadNewData(event) {
     svg.selectAll("*").remove();
@@ -116,8 +117,8 @@ function draw(data, pop){
 //     let dataWidth = data.length*100;
 
     // let width = (dataWidth > minWidth) ? dataWidth:minWidth;
-    let width = dataWidth ;
-    document.getElementById("mainsvg").setAttribute("width",width);
+    let width = 1500 ;
+
     let font = "Arial";
     let interpolation = "cardinal";
     let bias = 200;
